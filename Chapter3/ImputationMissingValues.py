@@ -6,6 +6,7 @@
 #    Chapter 3                                               #
 #                                                            #
 ##############################################################
+from Chapter3.KalmanFilters import KalmanFilters
 
 # Simple class to impute missing values of a single columns.
 class ImputationMissingValues:
@@ -26,3 +27,8 @@ class ImputationMissingValues:
         # And fill the initial data points if needed:
         dataset[col] = dataset[col].fillna(method='bfill')
         return dataset
+
+    def kalman_filter(self, dataset, col):
+        dataset2 = KalmanFilters.apply_kalman_filter(self,dataset, col)
+        return dataset2
+
