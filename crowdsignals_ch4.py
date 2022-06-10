@@ -93,6 +93,9 @@ def main():
         dataset = NumAbs.abstract_numerical(dataset, selected_predictor_cols, ws, 'mean')
         dataset = NumAbs.abstract_numerical(dataset, selected_predictor_cols, ws, 'std')
         # TODO: Add your own aggregation methods here
+        dataset = NumAbs.abstract_numerical(dataset, selected_predictor_cols, ws, 'sum')
+        dataset = NumAbs.abstract_numerical(dataset, selected_predictor_cols, ws, 'first')
+        dataset = NumAbs.abstract_numerical(dataset, selected_predictor_cols, ws, 'last')
         
         DataViz.plot_dataset(dataset, ['acc_phone_x', 'gyr_phone_x', 'hr_watch_rate', 'light_phone_lux', 'mag_phone_x', 'press_phone_', 'pca_1', 'label'], ['like', 'like', 'like', 'like', 'like', 'like', 'like','like'], ['line', 'line', 'line', 'line', 'line', 'line', 'line', 'points'])
 
