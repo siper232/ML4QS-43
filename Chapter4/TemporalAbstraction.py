@@ -32,11 +32,37 @@ class NumericalAbstraction:
             return slope
 
     #TODO Add your own aggregation function here:
-    # def my_aggregation_function(self, data) 
+    def first(self, data):
+        
+        data = data.astype(np.float32)
+        
+        # Check for NaN's
+        mask = ~np.isnan(data)
+
+        # If we have no data but NaN we return NaN.
+        if (len(data[mask]) == 0):
+            return np.nan
+        # Otherwise we return the first value.
+        else:
+            return data[0]
+    
+    def last(self, data):
+        
+        data = data.astype(np.float32)
+        
+        # Check for NaN's
+        mask = ~np.isnan(data)
+
+        # If we have no data but NaN we return NaN.
+        if (len(data[mask]) == 0):
+            return np.nan
+        # # Otherwise we return the first value.
+        else:
+            return data[len(data)-1]
 
     # This function aggregates a list of values using the specified aggregation
     # function (which can be 'mean', 'max', 'min', 'median', 'std', 'slope')
-    def aggregate_value(self,data, window_size, aggregation_function):
+    def aggregate_value(self, data, window_size, aggregation_function):
         window = str(window_size) + 's'
         # Compute the values and return the result.
         if aggregation_function == 'mean':
@@ -53,6 +79,12 @@ class NumericalAbstraction:
             return data.rolling(window, min_periods=window_size).apply(self.get_slope)
         
         #TODO: add your own aggregation function here
+        elif aggregation_function == 'sum':
+            return data.rolling(window, min_periods=window_size).sum()
+        elif aggregation_function == 'first':
+            return data.rolling(window, min_periods=window_size).apply(self.first)
+        elif aggregation_function == 'last':
+            return data.rolling(window, min_periods=window_size).apply(self.last)
         else:
             return np.nan
 
