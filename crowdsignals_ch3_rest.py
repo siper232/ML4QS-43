@@ -60,17 +60,18 @@ def main():
 
     if FLAGS.mode == 'imputation':
         # Let us impute the missing values and plot an example.
-       
-        imputed_mean_dataset = MisVal.impute_mean(copy.deepcopy(dataset), 'hr_watch_rate')       
-        imputed_median_dataset = MisVal.impute_median(copy.deepcopy(dataset), 'hr_watch_rate')
-        imputed_interpolation_dataset = MisVal.impute_interpolate(copy.deepcopy(dataset), 'hr_watch_rate')
-        imputed_kalman_filter_dataset = MisVal.kalman_filter(copy.deepcopy(dataset), 'hr_watch_rate')
+
+
+        imputed_mean_dataset = MisVal.impute_mean(copy.deepcopy(dataset), 'press_phone_X (hPa)')
+        imputed_median_dataset = MisVal.impute_median(copy.deepcopy(dataset), 'press_phone_X (hPa)')
+        imputed_interpolation_dataset = MisVal.impute_interpolate(copy.deepcopy(dataset), 'press_phone_X (hPa)')
+        imputed_kalman_filter_dataset = MisVal.kalman_filter(copy.deepcopy(dataset), 'press_phone_X (hPa)')
         
-        DataViz.plot_imputed_values(dataset, ['original', 'mean', 'median', 'interpolation', 'kalman filter'], 'hr_watch_rate',
-                                    imputed_mean_dataset['hr_watch_rate'], 
-                                    imputed_median_dataset['hr_watch_rate'],
-                                    imputed_interpolation_dataset['hr_watch_rate'],
-                                    imputed_kalman_filter_dataset['hr_watch_rate'])
+        DataViz.plot_imputed_values(dataset, ['original', 'mean', 'median', 'interpolation', 'kalman filter'], 'press_phone_X (hPa)',
+                                    imputed_mean_dataset['press_phone_X (hPa)'], 
+                                    imputed_median_dataset['press_phone_X (hPa)'],
+                                    imputed_interpolation_dataset['press_phone_X (hPa)'],
+                                    imputed_kalman_filter_dataset['press_phone_X (hPa)'])
 
     elif FLAGS.mode == 'kalman':
         # Using the result from Chapter 2, let us try the Kalman filter on the light_phone_lux attribute and study the result.
@@ -113,7 +114,7 @@ def main():
 
        
         selected_predictor_cols = [c for c in dataset.columns if (
-            not ('label' in c)) and (not (c == 'hr_watch_rate'))]
+            not ('label' in c)) and (not (c == 'press_phone_X (hPa)'))]
         pc_values = PCA.determine_pc_explained_variance(
             dataset, selected_predictor_cols)
 
@@ -160,14 +161,14 @@ def main():
 
         # We used the optimal found parameter n_pcs = 7, to apply PCA to the final dataset
        
-        selected_predictor_cols = [c for c in dataset.columns if (not ('label' in c)) and (not (c == 'hr_watch_rate'))]
+        selected_predictor_cols = [c for c in dataset.columns if (not ('label' in c)) and (not (c == 'press_phone_X (hPa)'))]
         
         n_pcs = 7
         
         dataset = PCA.apply_pca(copy.deepcopy(dataset), selected_predictor_cols, n_pcs)
 
         # And the overall final dataset:
-        DataViz.plot_dataset(dataset, ['acc_', 'gyr_', 'hr_watch_rate', 'light_phone_lux', 'mag_', 'press_phone_', 'pca_', 'label'],
+        DataViz.plot_dataset(dataset, ['acc_', 'gyr_', 'press_phone_X (hPa)', 'light_phone_lux', 'mag_', 'press_phone_X (hPa)', 'pca_', 'label'],
                              ['like', 'like', 'like', 'like', 'like',
                                  'like', 'like', 'like', 'like'],
                              ['line', 'line', 'line', 'line', 'line', 'line', 'line', 'points', 'points'])

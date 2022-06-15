@@ -27,7 +27,7 @@ class KalmanFilters:
         numpy_matrix_state_with_mask = np.ma.masked_invalid(numpy_array_state)
 
         # Find the best other parameters based on the data (e.g. Q)
-        kf = kf.em(numpy_matrix_state_with_mask, n_iter=5)
+        kf = kf.em(numpy_matrix_state_with_mask, n_iter=100)
 
         # And apply the filter.
         (new_data, filtered_state_covariances) = kf.filter(numpy_matrix_state_with_mask)
