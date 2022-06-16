@@ -20,11 +20,11 @@ import sys
 
 DATASET_PATH = Path('./datasets/Own_dataset')
 RESULT_PATH = Path('./intermediate_datafiles/')
-RESULT_FNAME = 'chapter2_result.csv'
+RESULT_FNAME = 'chapter2_result_owndataset.csv'
 
 # Set a granularity (the discrete step size of our time series data). We'll use a course-grained granularity of one
 # instance per minute, and a fine-grained one with four instances per second.
-GRANULARITIES = [60000, 250]
+GRANULARITIES = [6000, 250]
 
 # We can call Path.mkdir(exist_ok=True) to make any required directories if they don't already exist.
 [path.mkdir(exist_ok=True, parents=True) for path in [DATASET_PATH, RESULT_PATH]]
@@ -50,7 +50,7 @@ for milliseconds_per_instance in GRANULARITIES:
 ], 'avg', 'gyr_phone_')
 
 
-
+    dataset.add_event_dataset('labels.csv', 'label_start', 'label_end', 'label', 'binary')
 
     # We add the magnetometer data (continuous numerical measurements) of the phone and the smartwatch
     # and aggregate the values per timestep by averaging the values

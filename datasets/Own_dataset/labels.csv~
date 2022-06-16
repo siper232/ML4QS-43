@@ -1,0 +1,7 @@
+sensor_type,device_type,label,label_start,label_start_datetime,label_end,label_end_datetime
+interval_label,smartphone,Walking,1.65E+18,08-02-16 10:28,1.65E+18,08-02-16 10:32
+interval_label,smartphone,In lift,1.65E+18,08-02-16 10:33,1.65E+18,###############################################################################################################################################################################################################################################################
+interval_label,smartphone,Walking,1.65E+18,08-02-16 10:36,1.65E+18,08-02-16 10:40
+interval_label,smartphone,In lift,1.65E+18,08-02-16 10:41,1.65E+18,08-02-16 10:44
+interval_label,smartphone,Walking,1.65E+18,08-02-16 10:46,1.65E+18,08-02-16 10:51
+interval_label,smartphone,On table,1.65E+18,08-02-16 10:51,1.65E+18,08-02-16 10:54
